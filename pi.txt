@@ -7,7 +7,7 @@ pi	"pi"	32.28	32.27(32.30)
 sudo apt-get install -y vim
 修改配置
 在~目录下面新建默认.vimrc文件可以实现
-pi@pi:~ $ cp /usr/share/vim/vim80/vimrc_example.vim ./.vimrc
+pi@pi:~ $ cp /usr/share/vim/vim80/vimrc_example.vim ~/.vimrc
 编辑.vimrc
 增加colorscheme desert并保存
 执行source .vimrc
