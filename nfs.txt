@@ -1,4 +1,7 @@
-一。服务端linux
+查看版本
+nfsstat（服务端）
+nfsstat -m（客户端）
+一、服务端linux(pi_queen)
 1. 安装
 sudo apt-get install nfs-common nfs-kernal-server rpcbind -y
 
@@ -42,7 +45,7 @@ sudo mkdir
 /dev/sda2	/mnt/nfs-server	ntfs	defaults,noatime  0       0
 
 
-二。客户端linux如何访问
+二。客户端linux(pi)如何访问
 1.安装
 sudo apt-get update
 sudo spt-get install nfs-common -y
