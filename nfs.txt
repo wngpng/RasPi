@@ -33,7 +33,14 @@ showmount -e localhost #出现目录和访问地址即可
 
 4.附属
 sudo blkid #查看标签
+sudo lsblk #查看硬盘及挂载情况
+df -h #文件挂载情况
 sudo mkdir
+启动时自动挂载
+在/etc/fstab中
+增加
+/dev/sda2	/mnt/nfs-server	ntfs	defaults,noatime  0       0
+
 
 二。客户端linux如何访问
 1.安装
