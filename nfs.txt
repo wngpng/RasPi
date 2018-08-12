@@ -1,3 +1,6 @@
+showmount -e [server-ip]
+mount [server-ip]:/[share-path] [local-path]
+
 查看版本
 nfsstat（服务端）
 nfsstat -m（客户端）
@@ -41,11 +44,11 @@ df -h #文件挂载情况
 sudo mkdir
 启动时自动挂载
 在/etc/fstab中
-增加
+增加(经验证可行)
 /dev/sda2	/mnt/nfs-server	ntfs	defaults,noatime  0       0
 
 
-二。客户端linux(pi)如何访问
+二、客户端linux(pi)如何访问
 1.安装
 sudo apt-get update
 sudo spt-get install nfs-common -y
@@ -61,6 +64,14 @@ sudo mount 192.168.32.30:/mnt/nfs-server /mnt/nfs
 sudo vim /etc/fstab
 加入
 192.168.32.30:/mnt/nfs-server   /mnt/nfs   nfs    rw  0  0
+
+三、win系统建立nfs服务端
+1.安装haneWIN nfs
+=server
+-UTF-8勾上
+=exports
+-加上D:\Desktop -alldirs -range 192.168.32.1 192.168.32.100，其余注释
+2.安装目录下以管理员执行firewall.bat
 
 
 
