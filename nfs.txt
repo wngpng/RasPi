@@ -1,0 +1,56 @@
+一。服务端linux
+1. 安装
+sudo apt-get install nfs-common nfs-kernal-server rpcbind -y
+
+2.设置分享目录
+sudo mkdir /mnt/nfs-server
+sudo vim /etc/exports
+To export /data directory to 192.168.1.0/24 network enter the following in /etc/exports file:
+/data 192.168.1.0/24(rw,rsync)
+
+To export /sales to hostname tom and jerry, enter:
+/sales tom(ro,sync) jerry(ro,sync)
+
+To export /users to 192.168.1.0/24 in read write format, enter:
+/users 192.168.1.0/24(ro,sync) jerry(rw,fsid=0,insecure,no_subtree_check,async)
+
+Where,
+
+rw : Allow clients to read as well as write access
+ro : Read only access
+insecure : Tells the NFS server to use unpriveledged ports (ports > 1024).
+no_subtree_check : If the entire volume (/users) is exported, disabling this check will speed up transfers.
+async : async will speed up transfers.	
+
+3.启动服务并检查
+/etc/init.d/nfs-kernal-server start#启动服务
+showmount -e localhost #出现目录和访问地址即可
+解决办法
+/etc/init.d/rpcbind stop
+/etc/init.d/nfs-kernal-server stop
+/etc/init.d/rpcbind start
+/etc/init.d/nfs-kernal-server start
+
+4.附属
+sudo blkid #查看标签
+sudo mkdir
+
+二。客户端linux如何访问
+1.安装
+sudo apt-get update
+sudo spt-get install nfs-common -y
+
+2.查看所有分享的目录
+showmount -e 192.168.32.30
+
+3.挂载分享的目录
+sudo mkdir /mnt/nfs#新建挂载点
+sudo mount 192.168.32.30:/mnt/nfs-server /mnt/nfs
+
+4.开机自动挂载
+sudo vim /etc/fstab
+加入
+192.168.32.30:/mnt/nfs-server   /mnt/nfs   nfs    rw  0  0
+
+
+
