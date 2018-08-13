@@ -75,7 +75,7 @@ sudo vim /etc/fstab
 =server
 -UTF-8勾上
 =exports
--加上D:\Desktop -alldirs -range 192.168.32.1 192.168.32.100，其余注释
+-加上D:\Desktop -range 192.168.32.1 192.168.32.100，其余注释
 2.安装目录下以管理员执行firewall.bat
 
 
