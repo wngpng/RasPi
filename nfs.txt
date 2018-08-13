@@ -1,4 +1,10 @@
+#nfs support
 cat /proc/filesystems# 若出现nodev   nfs，则内核支持nfs
+#disk
+sudo blkid #查看标签
+sudo lsblk #查看硬盘及挂载情况
+df -h #文件挂载情况
+
 
 showmount -e [server-ip]
 mount [server-ip]:/[share-path] [local-path]
@@ -40,9 +46,6 @@ showmount -e localhost #出现目录和访问地址即可
 /etc/init.d/nfs-kernal-server start
 
 4.附属
-sudo blkid #查看标签
-sudo lsblk #查看硬盘及挂载情况
-df -h #文件挂载情况
 sudo mkdir
 启动时自动挂载
 在/etc/fstab中
