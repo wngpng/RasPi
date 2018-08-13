@@ -1,14 +1,16 @@
+cat /proc/filesystems# è‹¥å‡ºç°nodev   nfsï¼Œåˆ™å†…æ ¸æ”¯æŒnfs
+
 showmount -e [server-ip]
 mount [server-ip]:/[share-path] [local-path]
 
-²é¿´°æ±¾
-nfsstat£¨·şÎñ¶Ë£©
-nfsstat -m£¨¿Í»§¶Ë£©
-Ò»¡¢·şÎñ¶Ëlinux(pi_queen)
-1. °²×°
+æŸ¥çœ‹ç‰ˆæœ¬
+nfsstatï¼ˆæœåŠ¡ç«¯ï¼‰
+nfsstat -mï¼ˆå®¢æˆ·ç«¯ï¼‰
+ä¸€ã€æœåŠ¡ç«¯linux(pi_queen)
+1. å®‰è£…
 sudo apt-get install nfs-common nfs-kernal-server rpcbind -y
 
-2.ÉèÖÃ·ÖÏíÄ¿Â¼
+2.è®¾ç½®åˆ†äº«ç›®å½•
 sudo mkdir /mnt/nfs-server
 sudo vim /etc/exports
 To export /data directory to 192.168.1.0/24 network enter the following in /etc/exports file:
@@ -28,50 +30,50 @@ insecure : Tells the NFS server to use unpriveledged ports (ports > 1024).
 no_subtree_check : If the entire volume (/users) is exported, disabling this check will speed up transfers.
 async : async will speed up transfers.	
 
-3.Æô¶¯·şÎñ²¢¼ì²é
-/etc/init.d/nfs-kernal-server start#Æô¶¯·şÎñ
-showmount -e localhost #³öÏÖÄ¿Â¼ºÍ·ÃÎÊµØÖ·¼´¿É
-½â¾ö°ì·¨
+3.å¯åŠ¨æœåŠ¡å¹¶æ£€æŸ¥
+/etc/init.d/nfs-kernal-server start#å¯åŠ¨æœåŠ¡
+showmount -e localhost #å‡ºç°ç›®å½•å’Œè®¿é—®åœ°å€å³å¯
+è§£å†³åŠæ³•
 /etc/init.d/rpcbind stop
 /etc/init.d/nfs-kernal-server stop
 /etc/init.d/rpcbind start
 /etc/init.d/nfs-kernal-server start
 
-4.¸½Êô
-sudo blkid #²é¿´±êÇ©
-sudo lsblk #²é¿´Ó²ÅÌ¼°¹ÒÔØÇé¿ö
-df -h #ÎÄ¼ş¹ÒÔØÇé¿ö
+4.é™„å±
+sudo blkid #æŸ¥çœ‹æ ‡ç­¾
+sudo lsblk #æŸ¥çœ‹ç¡¬ç›˜åŠæŒ‚è½½æƒ…å†µ
+df -h #æ–‡ä»¶æŒ‚è½½æƒ…å†µ
 sudo mkdir
-Æô¶¯Ê±×Ô¶¯¹ÒÔØ
-ÔÚ/etc/fstabÖĞ
-Ôö¼Ó(¾­ÑéÖ¤¿ÉĞĞ)
+å¯åŠ¨æ—¶è‡ªåŠ¨æŒ‚è½½
+åœ¨/etc/fstabä¸­
+å¢åŠ (ç»éªŒè¯å¯è¡Œ)
 /dev/sda2	/mnt/nfs-server	ntfs	defaults,noatime  0       0
 
 
-¶ş¡¢¿Í»§¶Ëlinux(pi)ÈçºÎ·ÃÎÊ
-1.°²×°
+äºŒã€å®¢æˆ·ç«¯linux(pi)å¦‚ä½•è®¿é—®
+1.å®‰è£…
 sudo apt-get update
 sudo spt-get install nfs-common -y
 
-2.²é¿´ËùÓĞ·ÖÏíµÄÄ¿Â¼
+2.æŸ¥çœ‹æ‰€æœ‰åˆ†äº«çš„ç›®å½•
 showmount -e 192.168.32.30
 
-3.¹ÒÔØ·ÖÏíµÄÄ¿Â¼
-sudo mkdir /mnt/nfs#ĞÂ½¨¹ÒÔØµã
+3.æŒ‚è½½åˆ†äº«çš„ç›®å½•
+sudo mkdir /mnt/nfs#æ–°å»ºæŒ‚è½½ç‚¹
 sudo mount 192.168.32.30:/mnt/nfs-server /mnt/nfs
 
-4.¿ª»ú×Ô¶¯¹ÒÔØ
+4.å¼€æœºè‡ªåŠ¨æŒ‚è½½
 sudo vim /etc/fstab
-¼ÓÈë
+åŠ å…¥
 192.168.32.30:/mnt/nfs-server   /mnt/nfs   nfs    rw  0  0
 
-Èı¡¢winÏµÍ³½¨Á¢nfs·şÎñ¶Ë
-1.°²×°haneWIN nfs
+ä¸‰ã€winç³»ç»Ÿå»ºç«‹nfsæœåŠ¡ç«¯
+1.å®‰è£…haneWIN nfs
 =server
--UTF-8¹´ÉÏ
+-UTF-8å‹¾ä¸Š
 =exports
--¼ÓÉÏD:\Desktop -alldirs -range 192.168.32.1 192.168.32.100£¬ÆäÓà×¢ÊÍ
-2.°²×°Ä¿Â¼ÏÂÒÔ¹ÜÀíÔ±Ö´ĞĞfirewall.bat
+-åŠ ä¸ŠD:\Desktop -alldirs -range 192.168.32.1 192.168.32.100ï¼Œå…¶ä½™æ³¨é‡Š
+2.å®‰è£…ç›®å½•ä¸‹ä»¥ç®¡ç†å‘˜æ‰§è¡Œfirewall.bat
 
 
 
