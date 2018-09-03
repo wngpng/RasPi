@@ -28,4 +28,7 @@ c
 make varibale
 disable
 r
-
+=================================
+gdb
+(gdb)file executableFile
+(gdb)start
